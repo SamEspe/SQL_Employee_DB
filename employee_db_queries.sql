@@ -16,3 +16,15 @@ select first_name, last_name, hire_date from "employees"
 select department_managers.dep_num, department.dep_name, department_managers.employee_num, employees.last_name, employees.first_name from "department_managers"
 left join "department" on department_managers.dep_num = department.dep_num
 left join "employees" on department_managers.employee_num = employees.employee_num
+
+-- 4. List the department of each employee with the following information: employee number, last name,
+-- first name, and department name
+
+select employees.employee_num, employees.last_name, employees.first_name, department.dep_name from "employees"
+left join "employee_department_junction" on employees.employee_num = employee_department_junction.employee_num
+left join "department" on employee_department_junction.dep_num = department.dep_num
+
+-- 5. List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B"
+
+select * from "employees"
+	where first_name = 'Hercules' and last_name like 'B%'
