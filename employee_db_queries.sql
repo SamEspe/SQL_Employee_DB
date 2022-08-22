@@ -17,8 +17,7 @@ select department_managers.dep_num, department.dep_name, department_managers.emp
 left join "department" on department_managers.dep_num = department.dep_num
 left join "employees" on department_managers.employee_num = employees.employee_num
 
--- 4. List the department of each employee with the following information: employee number, last name,
--- first name, and department name
+-- 4. List the department of each employee with the following information: employee number, last name, first name, and department name
 
 select employees.employee_num, employees.last_name, employees.first_name, department.dep_name from "employees"
 left join "employee_department_junction" on employees.employee_num = employee_department_junction.employee_num
@@ -26,5 +25,25 @@ left join "department" on employee_department_junction.dep_num = department.dep_
 
 -- 5. List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B"
 
-select * from "employees"
+select first_name, last_name, sex from "employees"
 	where first_name = 'Hercules' and last_name like 'B%'
+	
+-- 6. List all employees in the Sales department, including their employee number, last name, first name, and department name
+
+select employees.employee_num, employees.last_name, employees.first_name, department.dep_name from "employees"
+left join "employee_department_junction" on employees.employee_num = employee_department_junction.employee_num
+left join "department" on employee_department_junction.dep_num = department.dep_num
+	where department.dep_name = 'Sales'
+
+-- 7. List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name
+
+select employees.employee_num, employees.last_name, employees.first_name, department.dep_name from "employees"
+left join "employee_department_junction" on employees.employee_num = employee_department_junction.employee_num
+left join "department" on employee_department_junction.dep_num = department.dep_num
+	where department.dep_name = 'Sales' or department.dep_name = 'Development'
+	
+-- 8. List the frequency count of employee last names (i.e. how many employees share each last name) in descending order
+
+select last_name, count(last_name) from employees
+	group by last_name
+	order by count(last_name) desc
