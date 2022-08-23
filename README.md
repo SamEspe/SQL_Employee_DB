@@ -15,3 +15,5 @@ I used www.quickdatabasediagrams.com as a tool to create an Entity Relationship 
 The ERD design website I used (www.quickdatabasediagrams.com) allowed me to export my entity relationship diagram as a PostgreSQL schema to establish my database's structure. The schema is found in the `employee_db_schema.sql` file. With a little trial and error, I was able to use PostgreSQL to create the database from the schema, and to import the data from the CSV files.
 
 #### Data Analysis
+
+In my data analysis, I created queries to provide results to 8 questions. These queries are listed in the order given, and have the prompt provided above the query. 
